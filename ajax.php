@@ -210,6 +210,8 @@ function setPrivKey($nv)
 if(isset($_GET['initialCode'])) {
 	if(file_exists($initialFile)) {
 		$initialCode = file_get_contents($initialFile);
+		$initialCode = str_replace("\n", "", $initialCode);
+		$initialCode = str_replace("\r", "", $initialCode);
 		if($initialCode == $_GET['initialCode']) die("true");
 	}
 	die("false");

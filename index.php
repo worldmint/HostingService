@@ -42,6 +42,8 @@ $firstUse = false;
 if (!file_exists($passwordFile)) {
     if (isset($_POST['fct']) && ($_POST['fct'] == 'register')) {
         $initialCode = file_get_contents($initialFile);
+		$initialCode = str_replace("\n", "", $initialCode);
+		$initialCode = str_replace("\r", "", $initialCode);
         if ($_POST['initialCode'] == $initialCode) {
             echo "authorized";
 
