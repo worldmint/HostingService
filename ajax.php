@@ -141,6 +141,7 @@ function Info()
 function getLine($c)
 {
 	global $daemonConfigFile;
+	shell_exec('sudo chmod -f 777 ' . $daemonConfigFile);
 	$handle = fopen($daemonConfigFile, "r");
 	$v = "";
 	if($handle) {
@@ -159,6 +160,7 @@ function getLine($c)
 function setLine($c, $v, $nv)
 {
 	global $daemonConfigFile;
+	shell_exec('sudo chmod -f 777 ' . $daemonConfigFile);
 	$d = file_get_contents($daemonConfigFile);
 	$d = str_replace($c."=".$v, $c."=".$nv, $d);
 	file_put_contents($daemonConfigFile, $d);
