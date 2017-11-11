@@ -1,0 +1,113 @@
+<html><head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet" type="text/css">
+
+        <title>Register Interface</title>
+        <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+        <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.css">
+        <link rel="stylesheet" href="vendor/animate.css/animate.css">
+        <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="vendor/toastr/toastr.min.css"/>
+
+        <link rel="stylesheet" href="styles/pe-icons/pe-icon-7-stroke.css">
+        <link rel="stylesheet" href="styles/pe-icons/helper.css">
+        <link rel="stylesheet" href="styles/stroke-icons/style.css">
+        <link rel="stylesheet" href="styles/style.css">
+    </head>
+    <body class="blank  pace-done"><div class="pace  pace-inactive"><div class="pace-progress" style="transform: translate3d(100%, 0px, 0px);" data-progress-text="100%" data-progress="99">
+                <div class="pace-progress-inner"></div>
+            </div>
+            <div class="pace-activity"></div></div>
+
+        <div class="wrapper">
+
+
+            <!-- Main content-->
+            <section class="content">
+
+
+                <div class="container-center lg animated slideInDown">
+
+
+                    <div class="view-header">
+                        <div class="header-icon" style="margin-right: 20px;">
+                                <img src="images/alqo.png" class="img-circle" alt="" style="width: 70px;height: 70px;margin-bottom: -15px;margin-top: -10px;">
+                        </div>
+                        <div class="header-title">
+                            <h3>Initial Setup</h3>
+                            <small>
+                                Please enter your data to setup.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-filled">
+                        <div class="panel-body">
+                            <p>
+
+                            </p>
+                            <form id="loginForm" novalidate="">
+                                <div class="row">
+                                    <div class="form-group col-lg-12">
+                                        <label>Initialize-Code</label>
+                                        <input value="" id="initialCode" class="form-control" type="text">
+                                        <span class="help-block small">Please enter your Initialize-Code</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label>Password</label>
+                                        <input value="" id="password" placeholder="" class="form-control" type="password">
+                                        <span class="help-block small">Your hard to guess password</span>
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <label>Repeat Password</label>
+                                        <input value="" id="repeatpassword" class="form-control" type="password">
+                                        <span class="help-block small">Please repeat your pasword</span>
+                                    </div>
+                                </div>
+                                <div style="display: flex;justify-content: flex-end;">
+                                    <button class="btn btn-accent" id="btnRegister">Set Password</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <!-- End main content-->
+
+        </div>
+        <!-- End wrapper-->
+
+        <!-- Vendor scripts -->
+        <script src="vendor/pacejs/pace.min.js"></script>
+        <script src="vendor/jquery/dist/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="vendor/toastr/toastr.min.js"></script>
+
+        <!-- App scripts -->
+        <script src="scripts/luna.js"></script>
+        <script src="scripts/alqo_register.js"></script>
+
+
+    </body></html>

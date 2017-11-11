@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900' rel='stylesheet' type='text/css'>
+
+        <title>Masternode Interface</title>
+        <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+        <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.css"/>
+        <link rel="stylesheet" href="vendor/animate.css/animate.css"/>
+        <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css"/>
+        <link rel="stylesheet" href="vendor/toastr/toastr.min.css"/>
+        <link rel="stylesheet" href="vendor/switchery/switchery.min.css"/>
+        <link rel="stylesheet" href="styles/pe-icons/pe-icon-7-stroke.css"/>
+        <link rel="stylesheet" href="styles/pe-icons/helper.css"/>
+        <link rel="stylesheet" href="styles/stroke-icons/style.css"/>
+        <link rel="stylesheet" href="styles/style.css">
+    </head>
+    <body>
+
+        <div class="wrapper">
+
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="index.php">
+                            ALQO
+                            <span>v 1.0</span>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right" style="height: 60px;">
+                            <li class=" profil-link" style="height: 60px;display: flex;justify-content: center;flex-direction: column;">
+                                <a style="">
+                                    <i></i><i class="fa fa-envelope" style="margin-right:3px;"></i> Contact:<span class="profile-address"> support@alqo.org</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <section class="content">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div id="mainbar" class="view-header">
+                                <div class="pull-right text-right" style="line-height: 14px">
+                                    <small>
+                                        <span class="btn btn-w-md btn-danger" id="btnLogout">Logout</span>
+                                    </small>
+                                </div>
+                                <div class="header-icon" style="margin-right: 20px;">
+                                    <img src="images/alqo.png" class="img-circle" alt="" style="width: 70px;height: 70px;margin-bottom: -15px;margin-top: -10px;"><label style="font-size: 10pt;width: 100%;text-align: center;color: #cccbcb;">ALQO</label>
+                                </div>
+                                <div class="header-title">
+                                    <h3 class="m-b-xs">{SERVERNAME} - Webinterface</h3>
+                                    <small><a href="http://explorer.alqo.org/address/AcmpqXViWUXNroqVNYRdKjKrFM6PNa1oTM">
+                                            consider donating: 3GJmfmQ3FLaB6HH3bKUbqUitcQpyZ3HryJ</a>
+                                    </small>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12 col-xs-12">
+                            <div class="panel  panel-filled panel-c-accent">
+                                <div class="panel-heading">
+                                    <div class="panel-tools">
+                                        <a class="panel-toggle"><i class="fa fa-chevron-up"></i></a>
+                                    </div>
+                                    Server Information
+                                </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover" style="margin-bottom: 0;">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td id="sys_name" class="infoOutput"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Version</td>
+                                                    <td id="sys_version" class="infoOutput"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Version ID</td>
+                                                    <td id="sys_versionid" class="infoOutput"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Version Codename</td>
+                                                    <td id="sys_codename" class="infoOutput"></td>
+                                                </tr>
+                                                <tr id="custombuttontr">
+                                                    <td colspan="2">
+                                                        <div style="width:100%; display:flex; justify-content: flex-end;">
+                                                            <button type="submit" class="btn btn-w-md btn-danger" id="restart_daemon_btn" style="min-width: 70px;">Restart Daemon</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3  col-sm-12 col-xs-12">
+                            <div class="panel  panel-filled panel-c-accent">
+                                <div class="panel-heading">
+                                    <div class="panel-tools">
+                                        <a class="panel-toggle"><i class="fa fa-chevron-up"></i></a>
+                                    </div>
+                                    Daemon Information
+                                </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover" style="margin-bottom: 0;">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Status</td>
+                                                    <td id="sys_daemonstatus" class="infoOutput"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Blocknumber</td>
+                                                    <td id="sys_blocknumber" class="infoOutput"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Protocol Version</td>
+                                                    <td id="sys_pversion" class="infoOutput"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Connections</td>
+                                                    <td id="sys_connections" class="infoOutput"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Daemon IP</td>
+                                                    <td id="sys_mnip" class="infoOutput"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="panel  panel-filled panel-c-accent">
+                                <div class="panel-heading">
+                                    <div class="panel-tools">
+                                        <a class="panel-toggle"><i class="fa fa-chevron-up"></i></a>
+                                    </div>
+                                    Control Center
+                                </div>
+                                <div class="panel-body" style="  padding-right: 30px;">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-sm-6 col-xs-6">
+                                            <div>Masternode</div>
+                                            <div class="m-xs alqoswitch">
+                                                <input type="checkbox"
+                                                       class="masternode-switch" checked/>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 col-sm-6 col-xs-6">
+                                            <div>Staking</div>
+                                            <div class="m-xs alqoswitch">
+                                                <input type="checkbox"
+                                                       class="staking-switch" checked />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8 col-sm-12 col-xs-12">
+                                            <div class="row">
+                                                <div class="col-lg-12  col-sm-12 col-xs-12">
+                                                    <div>Edit MN Genkey</div>
+                                                </div>
+                                                <div class="col-lg-8 col-sm-8 col-xs-8">
+                                                    <form style="width:100%;">
+                                                        <div class="form-group" style="width:100%;">
+                                                            <input class="form-control" id="mnKeyInput" placeholder="" type="text">
+                                                        </div>
+                                                    </form>
+                                                </div>                
+                                                <div class="col-lg-4 col-sm-4 col-xs-4">
+                                                    <form style="width:100%;">
+                                                        <div class="form-group" style="width:100%;">
+                                                            <button type="submit" class="btn btn-w-md btn-danger" id="submit_masternodekey" style="min-width: 70px;">Submit</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12  col-sm-12 col-xs-12">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover" style="margin-bottom: 0;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Masternode</td>
+                                                            <td id="sys_masternode" class="infoOutput"></td>
+                                                            <td>Staking</td>
+                                                            <td id="sys_staking" class="infoOutput"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <table class="table table-hover" style="margin-bottom: 0;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td colspan="2">Walletbalance</td>
+                                                            <td colspan="2" id="sys_balance" class="infoOutput"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">Genkey</td>
+                                                            <td colspan="2" class="infoOutput"><span id="sys_genkey"></span><a id="showGenkey" style="margin-left: 10px;">show</a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="panel panel-filled panel-c-accent">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-xs-6"><h5 class="m-t-xs">RAM Usage <span style="color:grey; font-size: 10px; margin-left:5px;">  LIVE</span></h5></div>
+                                                <div class="col-sm-6 col-xs-6 text-right" id="ramUsageMB" ><samll></samll></div>
+                                            </div>
+                                            <div class="flot-chart-analytics">
+                                                <div class="flot-chart-content" id="metric_ram" style="padding: 0px; position: relative;"><canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 765px; height: 150px;" width="765" height="150"></canvas><div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div style="position: absolute; max-width: 109px; top: 133px; left: 22px; text-align: center;" class="flot-tick-label tickLabel">0</div><div style="position: absolute; max-width: 109px; top: 133px; left: 141px; text-align: center;" class="flot-tick-label tickLabel">50</div><div style="position: absolute; max-width: 109px; top: 133px; left: 259px; text-align: center;" class="flot-tick-label tickLabel">100</div><div style="position: absolute; max-width: 109px; top: 133px; left: 381px; text-align: center;" class="flot-tick-label tickLabel">150</div><div style="position: absolute; max-width: 109px; top: 133px; left: 503px; text-align: center;" class="flot-tick-label tickLabel">200</div><div style="position: absolute; max-width: 109px; top: 133px; left: 625px; text-align: center;" class="flot-tick-label tickLabel">250</div></div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div style="position: absolute; top: 120px; left: 13px; text-align: right;" class="flot-tick-label tickLabel">0</div><div style="position: absolute; top: 96px; left: 7px; text-align: right;" class="flot-tick-label tickLabel">20</div><div style="position: absolute; top: 72px; left: 7px; text-align: right;" class="flot-tick-label tickLabel">40</div><div style="position: absolute; top: 48px; left: 7px; text-align: right;" class="flot-tick-label tickLabel">60</div><div style="position: absolute; top: 24px; left: 7px; text-align: right;" class="flot-tick-label tickLabel">80</div><div style="position: absolute; top: 1px; left: 0px; text-align: right;" class="flot-tick-label tickLabel">100</div></div></div><canvas class="flot-overlay" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 765px; height: 150px;" width="765" height="150"></canvas></div>
+                                            </div>
+                                            <div class="text-right font-bold c-white y-value" id = "actRamUsage">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="panel panel-filled panel-c-accent">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-xs-6"><h5 class="m-t-xs">CPU Usage <span style="color:grey; font-size: 10px; margin-left:5px;">  LIVE</span></h5></div>
+                                            </div>
+                                            <div class="flot-chart-analytics">
+                                                <div class="flot-chart-content" id="metric_cpu" style="padding: 0px; position: relative;"><canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 765px; height: 150px;" width="765" height="150"></canvas><div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div style="position: absolute; max-width: 109px; top: 133px; left: 22px; text-align: center;" class="flot-tick-label tickLabel">0</div><div style="position: absolute; max-width: 109px; top: 133px; left: 141px; text-align: center;" class="flot-tick-label tickLabel">50</div><div style="position: absolute; max-width: 109px; top: 133px; left: 259px; text-align: center;" class="flot-tick-label tickLabel">100</div><div style="position: absolute; max-width: 109px; top: 133px; left: 381px; text-align: center;" class="flot-tick-label tickLabel">150</div><div style="position: absolute; max-width: 109px; top: 133px; left: 503px; text-align: center;" class="flot-tick-label tickLabel">200</div><div style="position: absolute; max-width: 109px; top: 133px; left: 625px; text-align: center;" class="flot-tick-label tickLabel">250</div></div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div style="position: absolute; top: 120px; left: 13px; text-align: right;" class="flot-tick-label tickLabel">0</div><div style="position: absolute; top: 96px; left: 7px; text-align: right;" class="flot-tick-label tickLabel">20</div><div style="position: absolute; top: 72px; left: 7px; text-align: right;" class="flot-tick-label tickLabel">40</div><div style="position: absolute; top: 48px; left: 7px; text-align: right;" class="flot-tick-label tickLabel">60</div><div style="position: absolute; top: 24px; left: 7px; text-align: right;" class="flot-tick-label tickLabel">80</div><div style="position: absolute; top: 1px; left: 0px; text-align: right;" class="flot-tick-label tickLabel">100</div></div></div><canvas class="flot-overlay" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 765px; height: 150px;" width="765" height="150"></canvas></div>
+                                            </div>
+                                            <div class="text-right font-bold c-white y-value" id="actCpuUsage">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="panel panel-filled panel-c-accent  panel-collapse ">
+                                        <div class="panel-heading">
+                                            <div class="panel-tools">
+                                                <a class="panel-toggle"><i class="fa fa-chevron-down"></i></a>
+                                            </div>
+                                            Payoutlist
+                                        </div>
+                                        <div class="panel-body" style="display: none;">
+                                            <div class="table-responsive">
+                                                <table  class="table" style="margin:0;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Timestamp</th>
+                                                            <th>Block Hash</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="transactionTable">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>                                
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="panel panel-filled panel-c-accent">
+                                        <div class="panel-heading">
+                                            Payouts
+                                        </div>
+                                        <div class="panel-body">
+                                            <div><iframe class="chartjs-hidden-iframe" style="display: block; overflow: hidden; border: 0px none; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;" tabindex="-1"></iframe>
+                                                <canvas id="barOptions" height="50" style="display: block; width: 200px; height: 50px;" width="200"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </section>
+
+        </div>
+
+        <script src="vendor/jquery/dist/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="vendor/switchery/switchery.min.js"></script>
+        <script src="vendor/toastr/toastr.min.js"></script>
+        <script src="vendor/flot/jquery.flot.min.js"></script>
+        <script src="vendor/flot/jquery.flot.resize.min.js"></script>
+        <script src="vendor/flot/jquery.flot.spline.js"></script>
+        <script src="vendor/chart.js/dist/Chart.min.js"></script>
+
+        <script src="scripts/luna.js"></script>
+        <script src="scripts/alqo_adminpanel.js"></script>
+
+    </body>
+
+</html>
