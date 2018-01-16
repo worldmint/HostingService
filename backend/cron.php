@@ -1,6 +1,11 @@
 <?php
 if($_SERVER['REMOTE_ADDR'] != "127.0.0.1") die("No permission");
 
+if (@!fsockopen("127.0.0.1", 55000, $errno, $errstr, 1)) {
+	print_r(exec('/var/ALQO/alqo-cli -datadir=/var/ALQO/data stop'));
+	sleep(10);
+	print_r(exec('sudo /var/ALQO/alqod -datadir=/var/ALQO/data | exit'));
+}
 
 $serverResourceFile = "/var/ALQO/services/data/resources";
 $seconds = 180;
