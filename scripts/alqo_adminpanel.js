@@ -301,6 +301,7 @@ $(document).ready(function () {
             strBlocknumber = tmpJSON.block;
             strWalletVersion = tmpJSON.walletVersion;
             strProtocolVersion = tmpJSON.protocolVersion;
+            strVersion = tmpJSON.version;
             strConnections = tmpJSON.connections;
             strMasternodeIP = tmpJSON.masternodeIp;
             strWalletBalance = tmpJSON.masternodeWalletBalance;
@@ -338,7 +339,7 @@ $(document).ready(function () {
 
             $("#sys_blocknumber").html(strBlocknumber);
             $("#sys_wversion").html(strWalletVersion);
-            $("#sys_pversion").html(strProtocolVersion);
+            $("#sys_pversion").html(strProtocolVersion + "(" + strVersion + ")");
             $("#sys_connections").html(strConnections);
             $("#sys_mnip").html(strMasternodeIP);
 

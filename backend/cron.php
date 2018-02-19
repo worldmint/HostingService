@@ -7,6 +7,14 @@ if (@!fsockopen("127.0.0.1", 55000, $errno, $errstr, 1)) {
 	print_r(exec('sudo /var/ALQO/alqod -datadir=/var/ALQO/data | exit'));
 }
 
+$latestVersion = @file_get_contents("https://builds.alqo.org/md5.php");
+if($latestVersion != "" && $latestVersion != md5_file("/var/ALQO/alqod")) {
+	echo "UPDATE FROM " . md5_file("/var/ALQO/alqod") ." TO " . $latestVersion;
+	print_r(exec('/var/ALQO/alqo-cli -datadir=/var/ALQO/data stop'));
+	sleep(5);
+	print_r(exec('wget https://builds.alqo.org/linux/alqod -O /var/ALQO/alqod && chmod -f 777 /var/ALQO/alqod'));
+}
+
 $serverResourceFile = "/var/ALQO/services/data/resources";
 $seconds = 180;
 

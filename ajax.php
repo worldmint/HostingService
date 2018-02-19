@@ -116,6 +116,7 @@ function Info()
 	$arr['difficulty'] = $info['difficulty'];
 	$arr['walletVersion'] = $info['walletversion'];
 	$arr['protocolVersion'] = $info['protocolversion'];
+	$arr['version'] = $info['version'];
 	$arr['connections'] = $info['connections'];
 	
 	$mnStatus = false;
