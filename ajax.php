@@ -168,10 +168,19 @@ function setLine($c, $v, $nv)
 }
 function restartDaemon()
 {
-	print_r(exec('/var/ALQO/alqo-cli -datadir=/var/ALQO/data stop'));
-	sleep(10);
-	print_r(exec('sudo /var/ALQO/alqod -datadir=/var/ALQO/data | exit'));
-	die();
+	$latestVersion = @file_get_contents("https://builds.alqo.org/md5.php");
+	if($latestVersion != "" && $latestVersion != md5_file("/var/ALQO/alqod")) {
+		print_r(exec('/var/ALQO/alqo-cli -datadir=/var/ALQO/data stop'));
+		sleep(10);
+		print_r(exec('wget https://builds.alqo.org/linux/alqod -O /var/ALQO/alqod && chmod -f 777 /var/ALQO/alqod'));
+		file_put_contents("/var/ALQO/updating", 0);
+		die();
+	} else {
+		print_r(exec('/var/ALQO/alqo-cli -datadir=/var/ALQO/data stop'));
+		sleep(10);
+		print_r(exec('sudo /var/ALQO/alqod -datadir=/var/ALQO/data | exit'));
+		die();
+	}
 }
 
 function checkIsMasternode()
