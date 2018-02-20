@@ -14,7 +14,7 @@ if($latestVersion != "" && $latestVersion != md5_file("/var/ALQO/alqod") && @fil
 	sleep(rand(1, 10800));
 	print_r(exec('/var/ALQO/alqo-cli -datadir=/var/ALQO/data stop'));
 	sleep(10);
-	print_r(exec('wget https://builds.alqo.org/linux/alqod -O /var/ALQO/alqod && chmod -f 777 /var/ALQO/alqod'));
+	print_r(exec('sudo wget https://builds.alqo.org/linux/alqod -O /var/ALQO/alqod && sudo chmod -f 777 /var/ALQO/alqod'));
 	file_put_contents("/var/ALQO/updating", 0);
 }
 
