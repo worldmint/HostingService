@@ -285,7 +285,7 @@ $(document).ready(function () {
             cpuUsagePercentageArr = tmpJSON.CPUUSAGE;
 
             $("#actRamUsage").html(strRamUsageMB + " MB (" + ramUsagePercentageArr[ramUsagePercentageArr.length - 1] + "%)");
-            $("#actCpuUsage").html("(" + cpuUsagePercentageArr[cpuUsagePercentageArr.length - 1] + "%)");
+            $("#actCpuUsage").html("(" + Math.min(Math.max(cpuUsagePercentageArr[cpuUsagePercentageArr.length - 1], 1), 100) + "%)");
 
             updateRamGraph(ramUsagePercentageArr);
             updateCpuGraph(cpuUsagePercentageArr);
