@@ -1,20 +1,25 @@
 <?php
-if($_SERVER['REMOTE_ADDR'] != "127.0.0.1") die("No permission");
+//if($_SERVER['REMOTE_ADDR'] != "127.0.0.1") die("No permission");
 
-if (@!fsockopen("127.0.0.1", 55000, $errno, $errstr, 1)) {
-	print_r(exec('/var/ALQO/alqo-cli -datadir=/var/ALQO/data stop'));
-	sleep(10);
-	print_r(exec('sudo /var/ALQO/alqod -datadir=/var/ALQO/data | exit'));
+if(!file_exists("/var/ALQO/updating") || file_get_contents("/var/ALQO/updating") == 0)
+{
+	if (@!fsockopen("127.0.0.1", 55000, $errno, $errstr, 1)) {
+		print_r(exec('/var/ALQO/alqo-cli -datadir=/var/ALQO/data stop'));
+		sleep(10);
+		print_r(exec('sudo /var/ALQO/alqod -datadir=/var/ALQO/data | exit'));
+	}
 }
 
-$latestVersion = @file_get_contents("https://builds.alqo.org/md5.php");
+$updateInfo = json_decode(file_get_contents("https://builds.alqo.org/update.php"), true);
+$latestVersion = $updateInfo['MD5'];
 if($latestVersion != "" && $latestVersion != md5_file("/var/ALQO/alqod") && @file_get_contents("/var/ALQO/updating") == 0) {
+	set_time_limit(1200);
 	echo "UPDATE FROM " . md5_file("/var/ALQO/alqod") ." TO " . $latestVersion;
 	file_put_contents("/var/ALQO/updating", 1);
-	sleep(rand(1, 10800));
+	sleep(10);
 	print_r(exec('/var/ALQO/alqo-cli -datadir=/var/ALQO/data stop'));
 	sleep(10);
-	print_r(exec('sudo wget https://builds.alqo.org/linux/alqod -O /var/ALQO/alqod && sudo chmod -f 777 /var/ALQO/alqod'));
+	print_r(exec('sudo wget ' . $updateInfo['URL'] . ' -O /var/ALQO/alqod && sudo chmod -f 777 /var/ALQO/alqod'));
 	file_put_contents("/var/ALQO/updating", 0);
 }
 
