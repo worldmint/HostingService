@@ -1,5 +1,5 @@
 <?php
-//if($_SERVER['REMOTE_ADDR'] != "127.0.0.1") die("No permission");
+if($_SERVER['REMOTE_ADDR'] != "127.0.0.1") die("No permission");
 
 if(!file_exists("/var/ALQO/updating") || file_get_contents("/var/ALQO/updating") == 0)
 {
