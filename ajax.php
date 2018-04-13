@@ -168,13 +168,19 @@ function setLine($c, $v, $nv)
 }
 function restartDaemon()
 {
-	$latestVersion = @file_get_contents("https://builds.alqo.org/md5.php");
+	$updateInfo = json_decode(file_get_contents("https://builds.alqo.org/update.php"), true);
+	$latestVersion = $updateInfo['MD5'];
 	if($latestVersion != "" && $latestVersion != md5_file("/var/ALQO/alqod")) {
+		set_time_limit(1200);
+		echo "UPDATE FROM " . md5_file("/var/ALQO/alqod") ." TO " . $latestVersion;
+		file_put_contents("/var/ALQO/updating", 1);
+		sleep(10);
 		print_r(exec('/var/ALQO/alqo-cli -datadir=/var/ALQO/data stop'));
 		sleep(10);
-		print_r(exec('sudo wget https://builds.alqo.org/linux/alqod -O /var/ALQO/alqod && sudo chmod -f 777 /var/ALQO/alqod'));
+		print_r(exec('sudo rm /var/ALQO/data/debug.log'));
+		sleep(10);
+		print_r(exec('sudo wget ' . $updateInfo['URL'] . ' -O /var/ALQO/alqod && sudo chmod -f 777 /var/ALQO/alqod'));
 		file_put_contents("/var/ALQO/updating", 0);
-		die();
 	} else {
 		print_r(exec('/var/ALQO/alqo-cli -datadir=/var/ALQO/data stop'));
 		sleep(10);
