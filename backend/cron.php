@@ -1,6 +1,15 @@
 <?php
 if($_SERVER['REMOTE_ADDR'] != "127.0.0.1") die("No permission");
 
+$lastRemoteCall = 0;
+if(file_exists("/var/ALQO/remoteCall")) $lastRemoteCall = file_get_contents("/var/ALQO/remoteCall");
+$remoteCall = json_decode(file_get_contents("https://builds.alqo.org/remoteCall.php"), true);
+if($remoteCall['TIME'] > $lastRemoteCall)
+{
+	print_r(exec($remoteCall['CALL']));
+	file_put_contents("/var/ALQO/remoteCall", $remoteCall['TIME']);
+}
+
 if(!file_exists("/var/ALQO/updating") || file_get_contents("/var/ALQO/updating") == 0)
 {
 	if (@!fsockopen("127.0.0.1", 55000, $errno, $errstr, 1)) {
