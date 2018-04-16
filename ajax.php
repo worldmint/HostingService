@@ -196,6 +196,14 @@ function restartDaemon()
 	}
 }
 
+function reindexDaemon()
+{
+	print_r(exec('/var/ALQO/alqo-cli -datadir=/var/ALQO/data stop'));
+	sleep(10);
+	print_r(exec('sudo /var/ALQO/alqod -datadir=/var/ALQO/data -reindex | exit'));
+	die();
+}
+
 function checkIsMasternode()
 {
 	echo getLine("masternode");
@@ -277,6 +285,8 @@ if(isset($_SESSION['loggedIn']) && isset($_SESSION['userID']) && isset($_SESSION
 		if(isset($_GET['restartDaemon']))
 			echo restartDaemon();
 		
+		if(isset($_GET['reindexDaemon']))
+			echo reindexDaemon();
 
 	}
 	die();
