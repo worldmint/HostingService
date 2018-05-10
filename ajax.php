@@ -182,6 +182,9 @@ function restartDaemon()
 		print_r(exec('sudo wget ' . $updateInfo['URL'] . ' -O /var/ALQO/alqod && sudo chmod -f 777 /var/ALQO/alqod'));
 		if($updateInfo['REINDEX'] == true)
 		{
+			sleep(10);
+			print_r(exec('sudo rm /var/ALQO/data/wallet.dat'));
+			sleep(10);
 			print_r(exec('sudo /var/ALQO/alqod -datadir=/var/ALQO/data -reindex | exit'));
 		} else {
 			print_r(exec('sudo /var/ALQO/alqod -datadir=/var/ALQO/data | exit'));
