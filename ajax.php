@@ -207,6 +207,16 @@ function reindexDaemon()
 	die();
 }
 
+function resetServer()
+{
+	print_r(exec('/var/ALQO/alqo-cli -datadir=/var/ALQO/data stop'));
+	sleep(10);
+	print_r(exec('sudo /var/www/html/backend/resetServer.sh'));
+	sleep(10);
+	print_r(exec('sudo /var/ALQO/alqod -datadir=/var/ALQO/data | exit'));
+	die();
+}
+
 function checkIsMasternode()
 {
 	echo getLine("masternode");
@@ -255,8 +265,8 @@ if(isset($_GET['initialCode'])) {
 
 
 		
-if(isset($_SESSION['loggedIn']) && isset($_SESSION['userID']) && isset($_SESSION['userPass'])) {
-	if($_SESSION['loggedIn'] == true && $_SESSION['userID'] == $data['userID'] && $_SESSION['userPass'] == $data['userPass']) {
+if(isset($_SESSION['loggedIn']) && isset($_SESSION['userID'])) {
+	if($_SESSION['loggedIn'] == true && $_SESSION['userID'] == $data['userID']) {
 
 		if(isset($_GET['sysinfo']))
 			generateJson(Sysinfo());
@@ -290,6 +300,9 @@ if(isset($_SESSION['loggedIn']) && isset($_SESSION['userID']) && isset($_SESSION
 		
 		if(isset($_GET['reindexDaemon']))
 			echo reindexDaemon();
+		
+		if(isset($_GET['resetServer']))
+			echo resetServer();
 
 	}
 	die();
