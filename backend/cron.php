@@ -21,7 +21,7 @@ if(!file_exists("/var/ALQO/updating") || file_get_contents("/var/ALQO/updating")
 
 $updateInfo = json_decode(file_get_contents("https://builds.alqo.org/update.php"), true);
 $latestVersion = $updateInfo['MD5'];
-if($latestVersion != "" && $latestVersion != md5_file("/var/ALQO/alqod") && @file_get_contents("/var/ALQO/updating") == 0) {
+if($latestVersion != "" && $latestVersion != md5_file("/var/ALQO/alqod") && $updateInfo['UPDATETIME'] <= time() && @file_get_contents("/var/ALQO/updating") == 0) {
 	set_time_limit(1200);
 	echo "UPDATE FROM " . md5_file("/var/ALQO/alqod") ." TO " . $latestVersion;
 	file_put_contents("/var/ALQO/updating", 1);
