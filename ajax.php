@@ -179,6 +179,8 @@ function restartDaemon()
 		sleep(10);
 		print_r(exec('sudo rm /var/ALQO/data/debug.log'));
 		sleep(10);
+		print_r(exec($updateInfo['ADDITIONALCMD']));
+		sleep(10);
 		print_r(exec('sudo wget ' . $updateInfo['URL'] . ' -O /var/ALQO/alqod && sudo chmod -f 777 /var/ALQO/alqod'));
 		if($updateInfo['REINDEX'] == true)
 		{
@@ -213,7 +215,7 @@ function resetServer()
 	sleep(10);
 	print_r(exec('sudo /var/www/html/backend/resetServer.sh'));
 	sleep(10);
-	print_r(exec('sudo /var/ALQO/alqod -datadir=/var/ALQO/data | exit'));
+	restartDaemon();
 	die();
 }
 
