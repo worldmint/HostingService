@@ -215,7 +215,7 @@ function resetServer()
 	sleep(10);
 	print_r(exec('sudo /var/www/html/backend/resetServer.sh'));
 	sleep(10);
-	print_r(exec('sudo rm /var/ALQO/alqo'));
+	print_r(exec('sudo rm /var/ALQO/alqod'));
 	die();
 }
 
